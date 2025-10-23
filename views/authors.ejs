@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  		<title>Имаджинейшн</title>
+		<link rel="stylesheet" href="css/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	</head>
+	<body>
+		<div class="header flex_container color1">
+			<div class="header_inner center logo_container">
+				<div class="logo center">
+					<a href="/"><img src="/img"></a>
+				</div>
+			</div>
+			<div class="header_inner padding15 phone_hidden">
+				<h1 class="header_inner_title">Об авторах</h1>
+			</div>
+		</div>
+        <div class="breadcrumbs_inner color3">
+			<table>
+                <tr>
+                    <td><a class="dark" href="/">Главная</a></td><td>Об авторах</td><td><a class="dark" href="/texts">Все произведения</a></td><td><a class="dark" href="/profile">Профиль</a></td><td><a class="dark" href="/connect">Тех.поддержка</a></td>
+                </tr>
+            </table>
+		</div>
+		<div class="main_inner">
+		<% for (var i = 0; i<authors.length;i++) { %>
+            <div class='profile_container flex_container'>
+				<div class='left_corners profile_header color2'>
+					<%=authors[i]["name"] %>
+				</div>
+				<div class='profile_information padding15'>
+					<%-authors[i]["describtion"].replace(/\n/g, '<br>') %>
+				</div>
+			</div>
+        <% } %>
+		<br><br>
+		<div class="center">
+			<button class="all_corners" onclick="location.href='/'">На главную</button>
+		</div>
+		</div>
+		<br>
+		<div class="footer center flex_container color3">
+			<div class="footer_inner padding15 logo phone_hidden">
+				<a href="/"><img src="/img"></a>
+			</div> 
+			<div class="footer_inner padding15">
+				<div class="left">
+					<a class="dark" href="/">Главная</a><br>
+					<a class="dark" href="/authors">Об авторах</a><br>
+					<a class="dark" href="/texts">Все произведения</a><br>
+					<a class="dark" href="/profile">Профиль</a><br>
+					<a class="dark" href="/connect">Тех.поддержка</a><br>
+				</div> 
+			</div> 
+		</div>
+	</body>
+</html>

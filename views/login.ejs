@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  		<title>Имаджинейшн</title>
+		<link rel="stylesheet" href="css/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/jquery-3.7.1.min.js"></script>
+        <script>
+		$(document).ready(function() {
+			$("button[data-do='reg_show']").click(
+				function()
+				{
+					$("td").removeAttr("style");
+				}
+			);
+			$("body").on("mouseover", function () {
+				if ($("#login_signin").val() != "" && $("#password_signin").val() != "")
+				{
+					console.log(1);
+					$("button[data-do='sign_in']").removeAttr("disabled");
+				}
+				else {
+					$("button[data-do='sign_in']").attr("disabled", "true");
+				}
+
+				if ($("#login_reg").val() != "" && $("#password_reg").val() != "" && $("#nm").val() != "" && $("#descr").val() != "")
+				{
+					$("button[data-do='reg']").removeAttr("disabled");
+				}
+				else {
+					$("button[data-do='reg']").attr("disabled", "true");
+				}
+			});
+		});
+        </script>
+	</head>
+	<body>
+		<div class="header flex_container color1">
+			<div class="header_inner center logo_container">
+				<div class="logo center">
+					<a href="/"><img src="/img"></a>
+				</div>
+			</div>
+			<div class="header_inner_contacts center padding15">
+				<h1 class="header_inner_title">Вход</h1>
+			</div>
+		</div>
+		<div class="breadcrumbs_inner color3">
+			<table>
+                <tr>
+                    <td><a class="dark" href="/">Главная</a></td><td><a class="dark" href="/authors">Об авторах</a></td><td><a class="dark" href="/texts">Все произведения</a></td><td>Профиль</td><td><a class="dark" href="/connect">Тех.поддержка</a></td>
+                </tr>
+            </table>
+		</div>
+		<div class="main_inner">
+			<table><tr><td>
+			<div class="contact_container flex_container">		
+				<div class="contact_inner">
+					<h3><%=error %></h3>
+					<form action="/login" method="post">
+					<div class="input_container">
+						<div>Логин: </div>
+						<input type="text" placeholder="Логин" id="login_signin" name="login" required />
+					</div>
+					<div class="input_container">
+						<div>Пароль: </div>
+						<input type="password" id="password_signin" name="password" placeholder="Пароль" required />
+					</div>
+					<button data-do="sign_in" class="all_corners" type="submit" disabled>Вход</button>
+					</form>
+					<br>
+					<button data-do="reg_show" class="all_corners">Регистрация</button>
+				</div>
+			</div>
+			</td>
+			<td style="display: none;">
+				<div class="contact_container flex_container">		
+					<div class="contact_inner">
+						<form action="/registration" method="post">
+							<div class="input_container">
+								<div>Имя: </div>
+								<input type="text" placeholder="Имя" id="nm" name="nm" required value='<%=name %>'/>
+							</div>
+							<div class="input_container">
+								<div>Описание профиля:</div>
+								<textarea placeholder="Мяу" id="descr" name="descr" required><%=desc %></textarea>
+							</div>
+							<div class="input_container">
+								<div>Логин: </div>
+								<input type="text" placeholder="Логин" id="login_reg" name="login" required />
+							</div>
+							<div class="input_container">
+								<div>Пароль: </div>
+								<input type="password" id="password_reg" name="password" placeholder="Пароль" required />
+							</div>
+							<button data-do="reg" class="all_corners" type="submit" disabled>Регистрация</button>
+						</form>
+					</div>
+				</div>
+			</td>
+			</tr></table>
+			<br>
+			<div class="center">
+				<button class="all_corners" onclick="location.href='index.php'">На главную</button>
+			</div>
+		</div>
+		<br>
+		<div class="footer center flex_container color3">
+			<div class="footer_inner padding15 logo phone_hidden">
+				<a href="/"><img src="/img"></a>
+			</div> 
+			<div class="footer_inner padding15">
+				<div class="left">
+					<a class="dark" href="/">Главная</a><br>
+					<a class="dark" href="/authors">Об авторах</a><br>
+					<a class="dark" href="/texts">Все произведения</a><br>
+					<a class="dark" href="/profile">Профиль</a><br>
+					<a class="dark" href="/connect">Тех.поддержка</a><br>
+				</div> 
+			</div> 
+		</div>
+	</body>
+</html>

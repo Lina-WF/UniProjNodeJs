@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  		<title>Имаджинейшн</title>
+		<link rel="stylesheet" href="css/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="js/jquery-3.7.1.min.js"></script>
+        <script>
+		$(document).ready(function() {
+			$("button[data-do='hide']").click(
+				function()
+				{
+					$("div[data-do='hide']").attr("style", "display: none");
+				}
+			);
+		});
+        </script>
+ 	</head>
+	<body>
+		<div class="header flex_container color1">
+			<div class="header_inner center logo_container">
+				<div class="logo center">
+					<a href="/"><img src="/img"></a>
+				</div>
+			</div>
+			<div class="header_inner padding15 phone_hidden">
+				<h1 class="header_inner_title">Обитель Воображения</h1>
+			</div>
+		</div>
+        <div class="breadcrumbs_inner color3">
+			<table>
+                <tr>
+                    <td>Главная</td><td><a class="dark" href="/authors">Об авторах</a></td><td><a class="dark" href="/texts">Все произведения</a></td><td><a class="dark" href="/profile">Профиль</a></td><td><a class="dark" href="/connect">Тех.поддержка</a></td>
+                </tr>
+            </table>
+		</div>
+		<div class="main_inner">
+		<div data-do='hide'>
+			<h3>О сайте:</h3>
+			Данный сайт является сборником историй, созданных пользователями. Зарегистрируйтесь или войдите в аккаунт, чтобы добавить свою историю, именить её или удалить.
+			<br><br>
+			<button data-do="hide" class="all_corners">Скрыть</button>
+			<br><br>
+		</div>
+        <h3>Топ 5 новых произведений:</h3>
+		<% for(var i=0; i<texts.length;i++) {%>
+            <form method="POST" action="/read">
+                <input type="hidden" name="id" value=<%=texts[i]["id"] %>>
+                <div class='profile_container flex_container'>
+                    <div class='left_corners profile_header color2'>
+                        <%=texts[i]["title"] %><br>
+						<span class="smaller"><%=texts[i]["name"] %></span><br>
+						<br><br>
+                        <input type="submit" value="Читать" />
+                    </div>
+                    <div class='profile_information padding15'>
+                        <%-texts[i]["short_text"].replace(/\n/g, '<br>') %>
+                    </div>
+                </div>
+            </form>
+        <% } %>
+        <br>
+        <h3>Топ 5 самых популярных авторов:</h3>
+		<% for (var i=0; i<authors.length;i++) { %>
+            <div class='profile_container flex_container'>
+				<div class='left_corners profile_header color2'>
+					<%=authors[i]["name"] %>
+				</div>
+				<div class='profile_information padding15'>
+					<%-authors[i]["describtion"].replace(/\n/g, '<br>') %>
+				</div>
+			</div>
+        <% } %>
+		</div>
+		<br>
+		<div class="footer center flex_container color3">
+			<div class="footer_inner padding15 logo phone_hidden">
+				<a href="/"><img src="/img"></a>
+			</div> 
+			<div class="footer_inner padding15">
+				<div class="left">
+					<a class="dark" href="/">Главная</a><br>
+					<a class="dark" href="/authors">Об авторах</a><br>
+					<a class="dark" href="/texts">Все произведения</a><br>
+					<a class="dark" href="/profile">Профиль</a><br>
+					<a class="dark" href="/connect">Тех.поддержка</a><br>
+				</div> 
+			</div> 
+		</div>
+	</body>
+</html>

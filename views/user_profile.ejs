@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  		<title>Имаджинейшн</title>
+		<link rel="stylesheet" href="css/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	</head>
+	<body>
+		<div class="header flex_container color1">
+			<div class="header_inner center logo_container">
+				<div class="logo center">
+					<a href="/"><img src="/img"></a>
+				</div>
+			</div>
+			<div class="header_inner padding15 phone_hidden">
+				<h1 class="header_inner_title">Профиль</h1>
+			</div>
+		</div>
+        <div class="breadcrumbs_inner color3">
+			<table>
+                <tr>
+                    <td><a class="dark" href="/">Главная</a></td><td><a class="dark" href="/authors">Об авторах</a></td><td><a class="dark" href="/texts">Все произведения</a></td><td>Профиль</td><td><a class="dark" href="/connect">Тех.поддержка</a></td>
+                </tr>
+            </table>
+		</div>
+		<div class="main_inner">
+			<div>
+				<h3>Имя: <%=user["name"] %></h3>
+			</div>
+			<div>
+				<h3>Описание: <%-user["describtion"].replace(/\n/g, '<br>') %></h3>
+			</div>
+			<br><br>
+			<div> <h3>Произведения:</h3>
+				<% for(var i=0; i<texts.length;i++) {%>
+					<form method="POST" action="/edit_text">
+						<input type="hidden" name="id" value=<%=texts[i]["id"] %>>
+						<div class='profile_container flex_container'>
+							<div class='left_corners profile_header color2'>
+								<%=texts[i]["title"] %>
+								<br><br>
+								<input type="submit" value="Перейти" />
+							</div>
+							<div class='profile_information padding15'>
+								<%-texts[i]["short_text"].replace(/\n/g, '<br>') %>
+							</div>
+						</div>
+					</form>
+				<% } %>
+				<div class="center">
+					<br>
+					<button class="all_corners" onclick="location.href='/add'">Добавить</button>
+					<br><br>
+					<button class="all_corners" onclick="location.href='/'">На главную</button>
+					<br><br>
+					<button class="all_corners" onclick="location.href='/logout'">Выйти</button>
+					<br>
+				</div>
+			</div>
+		</div>
+		<div class="footer center flex_container color3">
+			<div class="footer_inner padding15 logo phone_hidden">
+				<a href="/"><img src="/img"></a>
+			</div> 
+			<div class="footer_inner padding15">
+				<div class="left">
+					<a class="dark" href="/">Главная</a><br>
+					<a class="dark" href="/authors">Об авторах</a><br>
+					<a class="dark" href="/texts">Все произведения</a><br>
+					<a class="dark" href="/profile">Профиль</a><br>
+					<a class="dark" href="/connect">Тех.поддержка</a><br>
+				</div> 
+			</div> 
+		</div>
+	</body>
+</html>
